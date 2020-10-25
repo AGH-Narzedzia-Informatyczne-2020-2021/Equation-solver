@@ -12,7 +12,7 @@ entry=Entry(root, width=59, borderwidth=1,).grid(row=1, column=0, columnspan=4)
 label=Label(root, width=35, text="").grid(row=2, column=0, columnspan=3)
 
 button_next=Button(root, text="Następne równanie", fg="#ffed7a", bg="#a16d00", activeforeground="#431800", activebackground="#e49f33", padx="14", pady="10", font=myFont).grid(row=3, column=0, columnspan=2)
-button_clear=Button(root, text="Wyczyść", fg="#875c00", bg="#e6d047", activeforeground="#431800", activebackground="#f7e158", padx="10", pady="10", font=myFont).grid(row=4,column=0)
+button_clear=Button(root, text="Kasuj", fg="#875c00", bg="#e6d047", activeforeground="#ffed7a", activebackground="#bf1717", padx="27", pady="10", font=myFont).grid(row=4,column=0)
 button_x=Button(root, text="x", fg="#875c00", bg="#e6d047", activeforeground="#431800", activebackground="#f7e158", padx="51", pady="10", font=myFont).grid(row=4,column=1)
 button_y=Button(root, text="y", fg="#875c00", bg="#e6d047", activeforeground="#431800", activebackground="#f7e158", padx="51", pady="10", font=myFont).grid(row=4,column=2)
 button_z=Button(root, text="z", fg="#875c00", bg="#e6d047", activeforeground="#431800", activebackground="#f7e158", padx="51", pady="10", font=myFont).grid(row=4,column=3)
@@ -34,5 +34,6 @@ button9=Button(root, text="=", fg="#875c00", bg="#e6d047", activeforeground="#43
 
 button0=Button(root, text="0", fg="#875c00", bg="#ffff9c", activeforeground="#875c00", activebackground="#ffffcf", padx="110", pady="20", font=myFont).grid(row=8,columnspan=2)
 button_comma=Button(root, text=",", fg="#875c00", bg="#ffff9c", activeforeground="#875c00", activebackground="#ffffcf", padx="53", pady="20", font=myFont).grid(row=8,column=2)
+
 
 root.mainloop()
