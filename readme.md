@@ -5,7 +5,7 @@ Naszym celem jest stworzenie programu, który będzie rozwiązywał układ n ró
 ### Twórcy
 * Kamil Barszczak
 * Marcin Głodziak
-* Maja   Świerk
+* Maja Świerk
 * Małgorzata Duda
 * Dominik Kikla
 
