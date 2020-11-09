@@ -1,11 +1,11 @@
 # Equation solver
 
-Naszym celem jest stworzenie programu, który bêdzie rozwi¹zywa³ uk³ad n równañ z n niewiadomymi
-### Twórcy
+Naszym celem jest stworzenie programu, ktÃ³ry bÄ™dzie rozwiÄ…zywaÅ‚ ukÅ‚ad n rÃ³wnaÅ„ z n niewiadomymi
+### TwÃ³rcy :busts_in_silhouette:
 * Kamil Barszczak
-* Marcin G³odziak
-* Maja Œwierk
-* Ma³gorzata Duda
+* Marcin GÅ‚odziak
+* Maja Åšwierk
+* MaÅ‚gorzata Duda
 * Dominik Kikla
 
-_Projekt na przedmiot "Narzêdzia informatyczne"_
+_Projekt na przedmiot "NarzÄ™dzia informatyczne"_  :books:
