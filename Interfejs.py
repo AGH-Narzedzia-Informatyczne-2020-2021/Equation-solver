@@ -14,6 +14,7 @@ entry=Entry(root, width=59, borderwidth=1,)
 
 label=Label(root, width=35, text="").grid(row=2, column=0, columnspan=3)
 
+
 def change(number):
     current = entry.get()
     entry.delete(0, END)
@@ -21,7 +22,6 @@ def change(number):
 
 def clear():
     entry.delete(0,END)
-
 
 def zamiana():
     button1=Button(root, text="a", fg="#875c00", bg="#ffff9c", activeforeground="#875c00", activebackground="#ffffcf", padx="51", pady="20", font=myFont, command=lambda: change('a')).grid(row=5,column=0)
