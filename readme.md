@@ -12,6 +12,7 @@ Naszym celem jest stworzenie programu, który będzie rozwiązywał układ n ró
 * Dominik Kikla
 
 
+
 ###### _Szkic interfejsu graficznego_:
 ![Interfejs][zdjecie]
 
@@ -22,3 +23,6 @@ Naszym celem jest stworzenie programu, który będzie rozwiązywał układ n ró
 ##### _Projekt na przedmiot "Narzędzia informatyczne"_ :books:
 
 [zdjecie]: https://github.com/AGH-Narzedzia-Informatyczne/Equation-solver/blob/zdjecie/Kalkulator.png
+
+_Projekt na przedmiot "Narzędzia informatyczne"_  :books:
+
