@@ -16,20 +16,16 @@ entry=Entry(root, width=59, borderwidth=1,)
 
 label=Label(root, width=35, text="").grid(row=2, column=0, columnspan=3)
 
-def change(number):
+def save_(current):
+    saved_list=[]
+    root=Tk()
+    root.title("Kalkulator")
+    #root.geometry("500x200")
+    myFont = font.Font(size=16)
 
-    current = []
-    current.append(entry.get())
-    if number=='=':
-        save(current)
-        aasd = clear()
-        main()
-    else:
-        entry.delete(0, END)
-        entry.insert(0, str(current[0]) + str(number))
-        print(current)
 
-def save_ASdasd(current):
+    label=Label(root, width=35, text="").grid(row=0, column=0, columnspan=3)
+    entry=Entry(root, width=59, borderwidth=1,)
 
 def clear():
     entry.delete(0,END)
