@@ -16,7 +16,7 @@ entry=Entry(root, width=59, borderwidth=1,)
 
 label=Label(root, width=35, text="").grid(row=2, column=0, columnspan=3)
 
-def small_change(number):
+def change(number):
 
     current = []
     current.append(entry.get())
@@ -29,11 +29,8 @@ def small_change(number):
         entry.insert(0, str(current[0]) + str(number))
         print(current)
 
-def save(current):
+def save_ASdasd(current):
 
-    saved_list.append(current)
-    for i in saved_list:
-        print(saved_list)
 def clear():
     entry.delete(0,END)
 
