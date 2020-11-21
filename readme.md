@@ -45,6 +45,7 @@ __Dominik Kikla Gists__:
 [gist2m]: https://gist.github.com/maja202/3d9139e5e4268b4b577906932bd52687
 [gist1k]: https://gist.github.com/kbarszczak/123d9845860bfe74db988625448efba8
 [gist2k]: https://gist.github.com/kbarszczak/aa74e4c3404a3b0a4e99b316f31c349f
+[gist1DK]: https://gist.github.com/DomKik/8d74d9f1c74e121b7133b460252a588e
 
 _Projekt na przedmiot "Narzędzia informatyczne"_  :books:
 
