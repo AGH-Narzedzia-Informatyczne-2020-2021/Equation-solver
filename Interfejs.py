@@ -22,7 +22,7 @@ def change(number):
     current.append(entry.get())
     if number=='=':
         save(current)
-        clear()
+        clean()
         main()
     else:
         entry.delete(0, END)
