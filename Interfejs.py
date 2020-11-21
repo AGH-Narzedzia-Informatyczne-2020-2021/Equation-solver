@@ -29,6 +29,19 @@ def change(number):
         entry.insert(0, str(current[0]) + str(number))
         print(current)
 
+  def change(number):
+
+    currenasd = []
+    curreasd.append(entry.get())
+    if number=='=':
+        save(curreasd)
+        aasd = clear()
+        main()
+    else:
+        entry.delete(0, END)
+        entry.insert(0, str(current[0]) + str(number))
+        print(current)
+
 def save(current):
 
     saved_list.append(current)
