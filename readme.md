@@ -31,6 +31,9 @@ __Kamil Barszczak Gists__:
 * *[Tic Tac Toe result function][gist1k]*
 * *[Change function][gist2k]*
 
+__Dominik Kikla Gists__:
+*  *[First Gist][gist:8d74d9f1c74e121b7133b460252a588e]*
+
 
 ##### _Projekt na przedmiot "Narzędzia informatyczne"_ :books:
 
