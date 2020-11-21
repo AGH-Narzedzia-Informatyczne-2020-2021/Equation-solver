@@ -33,7 +33,7 @@ __Kamil Barszczak Gists__:
 
 
 __Dominik Kikla Gists__:
-*  *[First Gist][gist1]*
+*  *[First Gist][gist1DK]*
 
 
 ##### _Projekt na przedmiot "Narzędzia informatyczne"_ :books:
