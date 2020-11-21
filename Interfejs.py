@@ -22,7 +22,7 @@ def change(number):
     current.append(entry.get())
     if number=='=':
         save(current)
-        asdknasod()
+        aasd = clear()
         main()
     else:
         entry.delete(0, END)
