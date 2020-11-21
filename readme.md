@@ -27,6 +27,11 @@ __Maja Świerk Gists__:
 * *[My second gist][gist2m]*
 
 
+__Kamil Barszczak Gists__:
+* *[Tic Tac Toe result function][gist1k]*
+* *[Change function][gist2k]*
+
+
 ##### _Projekt na przedmiot "Narzędzia informatyczne"_ :books:
 
 [zdjecie]: https://github.com/AGH-Narzedzia-Informatyczne/Equation-solver/blob/zdjecie/Kalkulator.png
@@ -34,7 +39,8 @@ __Maja Świerk Gists__:
 [gist2]:https://gist.github.com/marglodziak/90566e757fdd1dbc901d06c951ad4855
 [gist1m]: https://gist.github.com/maja202/dde6f8b260fd9c5208330a6d9f56b8aa
 [gist2m]: https://gist.github.com/maja202/3d9139e5e4268b4b577906932bd52687
-
+[gist1k]: https://gist.github.com/kbarszczak/123d9845860bfe74db988625448efba8
+[gist2k]: https://gist.github.com/kbarszczak/aa74e4c3404a3b0a4e99b316f31c349f
 
 _Projekt na przedmiot "Narzędzia informatyczne"_  :books:
 
