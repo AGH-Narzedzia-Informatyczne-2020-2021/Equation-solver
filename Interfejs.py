@@ -2,8 +2,122 @@ import tkinter as tk
 import tkinter.font as font
 import main
 
+#FUNKCJE ZWRACAJACE WYNIK | POCZATEK
+#ZMIENNE NA DANE | SAVED_LIST - LISTA NA ROWNANIA | VECTOR - LISTA NA WYRAZY WOLNE
+vector = []
 saved_list=[]
+macierz_do_licz_wyznacznika = []
 
+
+alf_table = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+ROZMIAR_MACIERZY = len(saved_list)
+
+
+def wyzeruj_macierz_do_licz_wyznacznika():
+    for j in range(ROZMIAR_MACIERZY):
+        pomoc = []
+        for i in range(ROZMIAR_MACIERZY): pomoc.append(0)
+        macierz_do_licz_wyznacznika.append(pomoc)
+        del pomoc
+
+
+def is_letter(letter):
+    if ( letter >= 'A' and letter <= 'Z' ) or ( letter >= 'a' and letter <= 'z' ): return True
+    return False
+
+
+def is_number(character):
+    if character <= '9' and character >= '0': return True
+    return False
+
+
+def change_to_big(char):
+    if ord(char) > 96: return chr(ord(char) - 32)
+    return char
+
+
+def create_matrix():
+    counter = 1
+    for row in range(len(saved_list)):
+        for element in range(len(saved_list[row])):
+            if is_letter(saved_list[row][element]) and saved_list[row][element] != '+' and \
+                    saved_list[row][element] != '-' and saved_list[row][element] != '=':
+                #ZAPAMIETUJE W KTORYM MIEJSCU W MACIERZY WSAWIC WSPOLCZYNNIK
+                actual_letter = change_to_big(saved_list[row][element])
+                if alf_table[ord(actual_letter)-65] == 0: 
+                    alf_table[ord(actual_letter)-65] = counter
+                    counter+=1
+
+                #ZAPAMIETUJE MIEJSCE WYSTAPIENIA ZMIENNEJ I OD TEGO MOMENTU COFA SIE DOPOKI NAPOTYKA INT
+                remember_position_of_element = element
+                element -= 1
+                if saved_list[row][element] == '+' or element<0:
+                    result = 1
+                elif saved_list[row][element] == '-':
+                    result = -1
+                else:
+                    #ZMIENNE DO TWORZENIA WSPOLCZYNNIKA PRZY ZMIENNEJ
+                    multipler = 1
+                    result = 0
+                    #OBLICZANIE WSPOLCZYNNIKA PRZY ZMIENNEJ
+                    while is_number(saved_list[row][element]):
+                        result += (int(saved_list[row][element])*multipler)
+                        multipler *= 10
+                        element -= 1
+                    if saved_list[row][element] == '-': result = -result
+                #POWROT ELEMENTU DO MIEJSCA WYSTAPIENIA ZMIENNEJ
+                element = remember_position_of_element
+                macierz_do_licz_wyznacznika[row][alf_table[ord(actual_letter)-65]-1] = result
+
+
+def change_column(column_to_change):
+    for i in range(len(macierz_do_licz_wyznacznika)):
+        macierz_do_licz_wyznacznika[i][column_to_change] = vector[i]
+
+
+def dodaj_kolumny(kolumna, kolumna_0):
+
+    for i in range(ROZMIAR_MACIERZY):
+        macierz_do_licz_wyznacznika[i][kolumna_0] += macierz_do_licz_wyznacznika[i][kolumna]
+
+
+def odejmij_wektory(wektor_modyfikowany, wektor_bazowy, mnoznik):
+
+    assert len(wektor_modyfikowany) == len(wektor_bazowy)
+
+    for i in range(len(wektor_modyfikowany)):
+        wektor_modyfikowany[i] -= mnoznik * wektor_bazowy[i]
+
+
+def zeruj_kolumne(gorny_wiersz, lewa_kolumna):
+
+    kolumna_bez_0 = lewa_kolumna
+    while kolumna_bez_0 < ROZMIAR_MACIERZY and macierz_do_licz_wyznacznika[gorny_wiersz][kolumna_bez_0] == 0:
+        kolumna_bez_0 += 1
+
+    if kolumna_bez_0 < ROZMIAR_MACIERZY:
+        if kolumna_bez_0 > lewa_kolumna:
+            dodaj_kolumny(kolumna_bez_0, lewa_kolumna)
+
+        for wiersz in range(gorny_wiersz + 1, ROZMIAR_MACIERZY):
+            if macierz_do_licz_wyznacznika[wiersz][gorny_wiersz] != 0:
+                mnoznik = macierz_do_licz_wyznacznika[wiersz][gorny_wiersz] / \
+                          macierz_do_licz_wyznacznika[gorny_wiersz][lewa_kolumna]
+                odejmij_wektory(macierz_do_licz_wyznacznika[wiersz], macierz_do_licz_wyznacznika[gorny_wiersz], mnoznik)
+
+
+def licz_wyznacznik(gorny_wiersz, lewa_kolumna):
+
+    for nr_wiersza in range(ROZMIAR_MACIERZY):
+        assert ROZMIAR_MACIERZY == len(macierz_do_licz_wyznacznika[nr_wiersza])
+
+    if lewa_kolumna == ROZMIAR_MACIERZY and gorny_wiersz == ROZMIAR_MACIERZY:
+        return macierz_do_licz_wyznacznika[0][0]
+    else:
+        zeruj_kolumne(gorny_wiersz, lewa_kolumna)
+        return macierz_do_licz_wyznacznika[gorny_wiersz][lewa_kolumna] * \
+                  licz_wyznacznik(gorny_wiersz + 1, lewa_kolumna + 1)
+#FUNKCJE ZWRACAJACE WYNIK | KONIEC
 
 def change(number):
     current = []
