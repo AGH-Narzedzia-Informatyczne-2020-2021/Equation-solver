@@ -128,7 +128,6 @@ if __name__ == "__main__":
 
 #KONIEC FUNCKJI ZWRACAJACYCH WYNIK
 
-
 def change(number):
     current = []
 
