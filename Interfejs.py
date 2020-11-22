@@ -2,47 +2,77 @@ import tkinter as tk
 import tkinter.font as font
 import main
 
-saved_list=[]
-
-#FUNKCJE ZWRACAJACE WYNIK
-
-macierz_do_licz_wyznacznika = [[]]
-changed_matix = [[]]
+#FUNKCJE ZWRACAJACE WYNIK | POCZATEK
+#ZMIENNE NA DANE | SAVED_LIST - LISTA NA ROWNANIA | VECTOR - LISTA NA WYRAZY WOLNE
 vector = []
+saved_list=[]
+macierz_do_licz_wyznacznika = []
 
-ROZMIAR_MACIERZY = len(macierz_do_licz_wyznacznika)
-saved_list=[["12a+23b+2c"]["43a+9b+3c"]["1a+2b+3c"]]
+
+alf_table = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+ROZMIAR_MACIERZY = len(saved_list)
+#saved_list = ["A-23B+Z", "-43B+A+3Z", "1Z-4354352B+3A"]
+
+
+def wyzeruj_macierz_do_licz_wyznacznika():
+    pomoc = []
+    for i in range(ROZMIAR_MACIERZY): pomoc.append(0)
+    for i in range(ROZMIAR_MACIERZY): macierz_do_licz_wyznacznika.append(pomoc)
+
+
+def is_letter(letter):
+    if ( letter >= 'A' and letter <= 'Z' ) or ( letter >= 'a' and letter <= 'z' ): return True
+    return False
+
+
+def is_number(character):
+    if character <= '9' and character >= '0': return True
+    return False
+
+
+def change_to_big(char):
+    if ord(char) > 96: return chr(ord(char) - 32)
+    return char
+
 
 def create_matrix():
+    counter = 1
+    for row in range(len(saved_list)):
+        for element in range(len(saved_list[row])):
+            if is_letter(saved_list[row][element]) and saved_list[row][element] != '+' and \
+                    saved_list[row][element] != '-' and saved_list[row][element] != '=':
+                #ZAPAMIETUJE W KTORYM MIEJSCU W MACIERZY WSAWIC WSPOLCZYNNIK
+                actual_letter = change_to_big(saved_list[row][element])
+                if alf_table[ord(actual_letter)-65] == 0: 
+                    alf_table[ord(actual_letter)-65] = counter
+                    counter+=1
 
-    for row in range(saved_list):
-        for element in range(row):
-            if type(save_list[row][element]) == str and save_list[row][element] != '+' and save_list[row][element] != '-' and save_list[row][element] != '=':
                 #ZAPAMIETUJE MIEJSCE WYSTAPIENIA ZMIENNEJ I OD TEGO MOMENTU COFA SIE DOPOKI NAPOTYKA INT
                 remember_position_of_element = element
-                element-=1
-                if save_list[row][element] == '+':
+                element -= 1
+                if saved_list[row][element] == '+' or element<0:
                     result = 1
-                elif save_list[row][element] == '-':
+                elif saved_list[row][element] == '-':
                     result = -1
-                else:   
+                else:
                     #ZMIENNE DO TWORZENIA WSPOLCZYNNIKA PRZY ZMIENNEJ
-                    multipler=1
-                    result=0
+                    multipler = 1
+                    result = 0
                     #OBLICZANIE WSPOLCZYNNIKA PRZY ZMIENNEJ
-                    while type(save_list[row][element]) == int:
-                        result += (int(save_list[row][element])*multipler)
+                    while is_number(saved_list[row][element]):
+                        result += (int(saved_list[row][element])*multipler)
                         multipler *= 10
-                        element-=1
+                        element -= 1
+                    if saved_list[row][element] == '-': result = -result
                 #POWROT ELEMENTU DO MIEJSCA WYSTAPIENIA ZMIENNEJ
                 element = remember_position_of_element
-                print(result)
+                macierz_do_licz_wyznacznika[row][alf_table[ord(actual_letter)-65]-1] = result
+
 
 def change_column(column_to_change):
-    for i in range(macierz_do_licz_wyznacznika):
-        for j in range(i):
-            if j == column_to_change:
-                macierz_do_licz_wyznacznika[i][j] = vector[i]
+    for i in range(len(macierz_do_licz_wyznacznika)):
+        macierz_do_licz_wyznacznika[i][column_to_change] = vector[i]
+
 
 def dodaj_kolumny(kolumna, kolumna_0):
 
@@ -86,47 +116,7 @@ def licz_wyznacznik(gorny_wiersz, lewa_kolumna):
         zeruj_kolumne(gorny_wiersz, lewa_kolumna)
         return macierz_do_licz_wyznacznika[gorny_wiersz][lewa_kolumna] * \
                   licz_wyznacznik(gorny_wiersz + 1, lewa_kolumna + 1)
-
-
-def main():
-    global macierz_do_licz_wyznacznika
-    global ROZMIAR_MACIERZY
-    print("TESTY JEDNOSTKOWE:")
-    macierz_do_licz_wyznacznika = [[0, 1, 1], [1, 1, 1], [1, 1, 0]]
-    ROZMIAR_MACIERZY = len(macierz_do_licz_wyznacznika)
-    print(macierz_do_licz_wyznacznika)
-    wyznacznik = licz_wyznacznik(0, 0)
-    print("det = ", wyznacznik)
-
-    macierz_do_licz_wyznacznika = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-    ROZMIAR_MACIERZY = len(macierz_do_licz_wyznacznika)
-    print(macierz_do_licz_wyznacznika)
-    wyznacznik = licz_wyznacznik(0, 0)
-    print("det = ", wyznacznik)
-
-    macierz_do_licz_wyznacznika = [[1, 2], [4, 5]]
-    ROZMIAR_MACIERZY = len(macierz_do_licz_wyznacznika)
-    print(macierz_do_licz_wyznacznika)
-    wyznacznik = licz_wyznacznik(0, 0)
-    print("det = ", wyznacznik)
-
-    macierz_do_licz_wyznacznika = [[1, 1], [1, 1]]
-    ROZMIAR_MACIERZY = len(macierz_do_licz_wyznacznika)
-    print(macierz_do_licz_wyznacznika)
-    wyznacznik = licz_wyznacznik(0, 0)
-    print("det = ", wyznacznik)
-
-    macierz_do_licz_wyznacznika = [[0, 1, 2, 5], [1, 5, 1, 6], [3, 2, 0, 2], [3, 2, 3, 2]]
-    ROZMIAR_MACIERZY = len(macierz_do_licz_wyznacznika)
-    print(macierz_do_licz_wyznacznika)
-    wyznacznik = licz_wyznacznik(0, 0)
-    print("det = ", round(wyznacznik))
-
-
-if __name__ == "__main__":
-    main()
-
-#KONIEC FUNCKJI ZWRACAJACYCH WYNIK
+#FUNKCJE ZWRACAJACE WYNIK | KONIEC
 
 def change(number):
     current = []
