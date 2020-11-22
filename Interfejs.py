@@ -4,6 +4,131 @@ import main
 
 saved_list=[]
 
+#FUNKCJE ZWRACAJACE WYNIK
+
+macierz_do_licz_wyznacznika = [[]]
+changed_matix = [[]]
+vector = []
+
+ROZMIAR_MACIERZY = len(macierz_do_licz_wyznacznika)
+saved_list=[["12a+23b+2c"]["43a+9b+3c"]["1a+2b+3c"]]
+
+def create_matrix():
+
+    for row in range(saved_list):
+        for element in range(row):
+            if type(save_list[row][element]) == str and save_list[row][element] != '+' and save_list[row][element] != '-' and save_list[row][element] != '=':
+                #ZAPAMIETUJE MIEJSCE WYSTAPIENIA ZMIENNEJ I OD TEGO MOMENTU COFA SIE DOPOKI NAPOTYKA INT
+                remember_position_of_element = element
+                element-=1
+                if save_list[row][element] == '+':
+                    result = 1
+                elif save_list[row][element] == '-':
+                    result = -1
+                else:   
+                    #ZMIENNE DO TWORZENIA WSPOLCZYNNIKA PRZY ZMIENNEJ
+                    multipler=1
+                    result=0
+                    #OBLICZANIE WSPOLCZYNNIKA PRZY ZMIENNEJ
+                    while type(save_list[row][element]) == int:
+                        result += (int(save_list[row][element])*multipler)
+                        multipler *= 10
+                        element-=1
+                #POWROT ELEMENTU DO MIEJSCA WYSTAPIENIA ZMIENNEJ
+                element = remember_position_of_element
+                print(result)
+
+def change_column(column_to_change):
+    for i in range(macierz_do_licz_wyznacznika):
+        for j in range(i):
+            if j == column_to_change:
+                macierz_do_licz_wyznacznika[i][j] = vector[i]
+
+def dodaj_kolumny(kolumna, kolumna_0):
+
+    for i in range(ROZMIAR_MACIERZY):
+        macierz_do_licz_wyznacznika[i][kolumna_0] += macierz_do_licz_wyznacznika[i][kolumna]
+
+
+def odejmij_wektory(wektor_modyfikowany, wektor_bazowy, mnoznik):
+
+    assert len(wektor_modyfikowany) == len(wektor_bazowy)
+
+    for i in range(len(wektor_modyfikowany)):
+        wektor_modyfikowany[i] -= mnoznik * wektor_bazowy[i]
+
+
+def zeruj_kolumne(gorny_wiersz, lewa_kolumna):
+
+    kolumna_bez_0 = lewa_kolumna
+    while kolumna_bez_0 < ROZMIAR_MACIERZY and macierz_do_licz_wyznacznika[gorny_wiersz][kolumna_bez_0] == 0:
+        kolumna_bez_0 += 1
+
+    if kolumna_bez_0 < ROZMIAR_MACIERZY:
+        if kolumna_bez_0 > lewa_kolumna:
+            dodaj_kolumny(kolumna_bez_0, lewa_kolumna)
+
+        for wiersz in range(gorny_wiersz + 1, ROZMIAR_MACIERZY):
+            if macierz_do_licz_wyznacznika[wiersz][gorny_wiersz] != 0:
+                mnoznik = macierz_do_licz_wyznacznika[wiersz][gorny_wiersz] / \
+                          macierz_do_licz_wyznacznika[gorny_wiersz][lewa_kolumna]
+                odejmij_wektory(macierz_do_licz_wyznacznika[wiersz], macierz_do_licz_wyznacznika[gorny_wiersz], mnoznik)
+
+
+def licz_wyznacznik(gorny_wiersz, lewa_kolumna):
+
+    for nr_wiersza in range(ROZMIAR_MACIERZY):
+        assert ROZMIAR_MACIERZY == len(macierz_do_licz_wyznacznika[nr_wiersza])
+
+    if lewa_kolumna == ROZMIAR_MACIERZY and gorny_wiersz == ROZMIAR_MACIERZY:
+        return macierz_do_licz_wyznacznika[0][0]
+    else:
+        zeruj_kolumne(gorny_wiersz, lewa_kolumna)
+        return macierz_do_licz_wyznacznika[gorny_wiersz][lewa_kolumna] * \
+                  licz_wyznacznik(gorny_wiersz + 1, lewa_kolumna + 1)
+
+
+def main():
+    global macierz_do_licz_wyznacznika
+    global ROZMIAR_MACIERZY
+    print("TESTY JEDNOSTKOWE:")
+    macierz_do_licz_wyznacznika = [[0, 1, 1], [1, 1, 1], [1, 1, 0]]
+    ROZMIAR_MACIERZY = len(macierz_do_licz_wyznacznika)
+    print(macierz_do_licz_wyznacznika)
+    wyznacznik = licz_wyznacznik(0, 0)
+    print("det = ", wyznacznik)
+
+    macierz_do_licz_wyznacznika = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+    ROZMIAR_MACIERZY = len(macierz_do_licz_wyznacznika)
+    print(macierz_do_licz_wyznacznika)
+    wyznacznik = licz_wyznacznik(0, 0)
+    print("det = ", wyznacznik)
+
+    macierz_do_licz_wyznacznika = [[1, 2], [4, 5]]
+    ROZMIAR_MACIERZY = len(macierz_do_licz_wyznacznika)
+    print(macierz_do_licz_wyznacznika)
+    wyznacznik = licz_wyznacznik(0, 0)
+    print("det = ", wyznacznik)
+
+    macierz_do_licz_wyznacznika = [[1, 1], [1, 1]]
+    ROZMIAR_MACIERZY = len(macierz_do_licz_wyznacznika)
+    print(macierz_do_licz_wyznacznika)
+    wyznacznik = licz_wyznacznik(0, 0)
+    print("det = ", wyznacznik)
+
+    macierz_do_licz_wyznacznika = [[0, 1, 2, 5], [1, 5, 1, 6], [3, 2, 0, 2], [3, 2, 3, 2]]
+    ROZMIAR_MACIERZY = len(macierz_do_licz_wyznacznika)
+    print(macierz_do_licz_wyznacznika)
+    wyznacznik = licz_wyznacznik(0, 0)
+    print("det = ", round(wyznacznik))
+
+
+if __name__ == "__main__":
+    main()
+
+#KONIEC FUNCKJI ZWRACAJACYCH WYNIK
+
+
 def change(number):
     current = []
 
