@@ -11,13 +11,14 @@ macierz_do_licz_wyznacznika = []
 
 alf_table = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 ROZMIAR_MACIERZY = len(saved_list)
-#saved_list = ["A-23B+Z", "-43B+A+3Z", "1Z-4354352B+3A"]
 
 
 def wyzeruj_macierz_do_licz_wyznacznika():
-    pomoc = []
-    for i in range(ROZMIAR_MACIERZY): pomoc.append(0)
-    for i in range(ROZMIAR_MACIERZY): macierz_do_licz_wyznacznika.append(pomoc)
+    for j in range(ROZMIAR_MACIERZY):
+        pomoc = []
+        for i in range(ROZMIAR_MACIERZY): pomoc.append(0)
+        macierz_do_licz_wyznacznika.append(pomoc)
+        del pomoc
 
 
 def is_letter(letter):
