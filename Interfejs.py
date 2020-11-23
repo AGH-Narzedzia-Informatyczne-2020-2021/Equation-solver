@@ -5,7 +5,7 @@ import main
 #FUNKCJE ZWRACAJACE WYNIK | POCZATEK
 #ZMIENNE NA DANE | SAVED_LIST - LISTA NA ROWNANIA | VECTOR - LISTA NA WYRAZY WOLNE
 vector = []
-saved_list=[]
+saved_list = []
 macierz_do_licz_wyznacznika = []
 
 
@@ -46,7 +46,7 @@ def create_matrix():
                 actual_letter = change_to_big(saved_list[row][element])
                 if alf_table[ord(actual_letter)-65] == 0: 
                     alf_table[ord(actual_letter)-65] = counter
-                    counter+=1
+                    counter += 1
 
                 #ZAPAMIETUJE MIEJSCE WYSTAPIENIA ZMIENNEJ I OD TEGO MOMENTU COFA SIE DOPOKI NAPOTYKA INT
                 remember_position_of_element = element
@@ -67,7 +67,7 @@ def create_matrix():
                     if saved_list[row][element] == '-': result = -result
                 #POWROT ELEMENTU DO MIEJSCA WYSTAPIENIA ZMIENNEJ
                 element = remember_position_of_element
-                macierz_do_licz_wyznacznika[row][alf_table[ord(actual_letter)-65]-1] = result
+                macierz_do_licz_wyznacznika[row][alf_table[ord(actual_letter) - 65] - 1] = result
 
 
 def change_column(column_to_change):
@@ -163,20 +163,20 @@ def change(number):
         button_z["state"] = tk.NORMAL
 
     if number=='x' or number=='y' or number=='z':
-        button1["state"]= tk.DISABLED
-        button2["state"]= tk.DISABLED
-        button3["state"]= tk.DISABLED
-        button4["state"]= tk.DISABLED
-        button5["state"]= tk.DISABLED
-        button6["state"]= tk.DISABLED
-        button7["state"]= tk.DISABLED
-        button8["state"]= tk.DISABLED
-        button9["state"]= tk.DISABLED
-        button0["state"]= tk.DISABLED
-        button_comma["state"]= tk.DISABLED
-        button_x["state"]= tk.DISABLED
-        button_y["state"]= tk.DISABLED
-        button_z["state"]= tk.DISABLED
+        button1["state"] = tk.DISABLED
+        button2["state"] = tk.DISABLED
+        button3["state"] = tk.DISABLED
+        button4["state"] = tk.DISABLED
+        button5["state"] = tk.DISABLED
+        button6["state"] = tk.DISABLED
+        button7["state"] = tk.DISABLED
+        button8["state"] = tk.DISABLED
+        button9["state"] = tk.DISABLED
+        button0["state"] = tk.DISABLED
+        button_comma["state"] = tk.DISABLED
+        button_x["state"] = tk.DISABLED
+        button_y["state"] = tk.DISABLED
+        button_z["state"] = tk.DISABLED
 
     if number=='':
         button1["state"] = tk.NORMAL
@@ -212,7 +212,7 @@ def clear():
     button_z["state"] = tk.NORMAL
 
 
-root=tk.Tk()
+root = tk.Tk()
 myFont = font.Font(size=16)
 root.title("Kalkulator")
 label=tk.Label(root, width=35, text="").grid(row=0, column=0, columnspan=3)
@@ -221,7 +221,7 @@ entry=tk.Entry(root, width=59, borderwidth=1,)
 
 
 
-label=tk.Label(root, width=35, text="").grid(row=2, column=0, columnspan=3)
+label = tk.Label(root, width=35, text="").grid(row=2, column=0, columnspan=3)
 
 def zamiana():
     button1=tk.Button(root, text="a", fg="#875c00", bg="#ffff9c", activeforeground="#875c00", activebackground="#ffffcf", padx="51", pady="20", font=myFont, command=lambda: change('a')).grid(row=5,column=0)
