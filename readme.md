@@ -37,6 +37,7 @@ __Dominik Kikla Gists__:
 
 __Małgorzata Duda Gists__:
 * *[Pierwszy Gist][1gist]*
+* *[Drugi Gist][2gist]*
 
 ##### _Projekt na przedmiot "Narzędzia informatyczne"_ :books:
 
@@ -49,5 +50,6 @@ __Małgorzata Duda Gists__:
 [gist2k]: https://gist.github.com/kbarszczak/aa74e4c3404a3b0a4e99b316f31c349f
 [gist1DK]: https://gist.github.com/DomKik/8d74d9f1c74e121b7133b460252a588e
 [1gist]: https://gist.github.com/xovnsi/cfe995c2eea2e115b6d9694e63c54649
+[2gist]: https://gist.github.com/xovnsi/2999f416a862301f884a4c2270c5dad8
 
 
