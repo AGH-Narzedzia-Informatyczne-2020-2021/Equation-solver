@@ -8,7 +8,6 @@ vector = []
 saved_list=[]
 macierz_do_licz_wyznacznika = []
 
-
 alf_table = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 ROZMIAR_MACIERZY = len(saved_list)
 
@@ -118,66 +117,6 @@ def licz_wyznacznik(gorny_wiersz, lewa_kolumna):
         return macierz_do_licz_wyznacznika[gorny_wiersz][lewa_kolumna] * \
                   licz_wyznacznik(gorny_wiersz + 1, lewa_kolumna + 1)
 #FUNKCJE ZWRACAJACE WYNIK | KONIEC
-
-#Interfejs i zapis
-
-import tkinter as tk
-import tkinter.font as font
-
-saved_list=[]
-
-vector=[]
-
-def numbers_active(num):
-    if (num==1):
-        button1["state"] = tk.NORMAL
-        button2["state"] = tk.NORMAL
-        button3["state"] = tk.NORMAL
-        button4["state"] = tk.NORMAL
-        button5["state"] = tk.NORMAL
-        button6["state"] = tk.NORMAL
-        button7["state"] = tk.NORMAL
-        button8["state"] = tk.NORMAL
-        button9["state"] = tk.NORMAL
-        button0["state"] = tk.NORMAL
-    else:
-        button1["state"] = tk.DISABLED
-        button2["state"] = tk.DISABLED
-        button3["state"] = tk.DISABLED
-        button4["state"] = tk.DISABLED
-        button5["state"] = tk.DISABLED
-        button6["state"] = tk.DISABLED
-        button7["state"] = tk.DISABLED
-        button8["state"] = tk.DISABLED
-        button9["state"] = tk.DISABLED
-        button0["state"] = tk.DISABLED
-def vector_fun(list):
-    a=0
-    c=''
-    for element in list:
-        for i in element:
-            for sign in i:
-                if a==1:
-                    c+=sign
-                if sign=='=':
-                    a=1
-    vector.append(c)
-    print("Wektor: ", vector)
-
-def variables(list):
-    for i in list:
-        for sign in i:
-            if sign == 'x':
-                button_x["state"] = tk.DISABLED
-            if sign == 'y':
-                button_y["state"] = tk.DISABLED
-            if sign == 'z':
-                button_z["state"] = tk.DISABLED
-
-            if list=='i':
-                button_x["state"] = tk.NORMAL
-                button_y["state"] = tk.NORMAL
-                button_z["state"] = tk.NORMAL
 
 
 
