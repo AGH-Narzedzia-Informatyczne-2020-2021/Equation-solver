@@ -119,23 +119,8 @@ def licz_wyznacznik(gorny_wiersz, lewa_kolumna):
                   licz_wyznacznik(gorny_wiersz + 1, lewa_kolumna + 1)
 #FUNKCJE ZWRACAJACE WYNIK | KONIEC
 
-def change(number):
-    current = []
-
-    current.append(entry.get())
-    if number == '=':
-        save(current)
-        clear()
-
-    else:
-        entry.delete(0, tk.END)
-        entry.insert(0, str(current[0]) + str(number))
-        print(current)
-
-    if number=='-' or number=='+' or number==',':
-        button3_1["state"] = tk.DISABLED
-        button6_1["state"] = tk.DISABLED
-        button_comma["state"] = tk.DISABLED
+def numbers_active(num):
+    if (num==1):
         button1["state"] = tk.NORMAL
         button2["state"] = tk.NORMAL
         button3["state"] = tk.NORMAL
@@ -146,66 +131,141 @@ def change(number):
         button8["state"] = tk.NORMAL
         button9["state"] = tk.NORMAL
         button0["state"] = tk.NORMAL
+    else:
+        button1["state"] = tk.DISABLED
+        button2["state"] = tk.DISABLED
+        button3["state"] = tk.DISABLED
+        button4["state"] = tk.DISABLED
+        button5["state"] = tk.DISABLED
+        button6["state"] = tk.DISABLED
+        button7["state"] = tk.DISABLED
+        button8["state"] = tk.DISABLED
+        button9["state"] = tk.DISABLED
+        button0["state"] = tk.DISABLED
+def vector_fun(list):
+    a=0
+    c=''
+    for element in list:
+        for i in element:
+            for sign in i:
+                if a==1:
+                    c+=sign
+                if sign=='=':
+                    a=1
+    vector.append(c)
+    print("Wektor: ", vector)
+
+def variables(list):
+    for i in list:
+        for sign in i:
+            if sign == 'x':
+                button_x["state"] = tk.DISABLED
+            if sign == 'y':
+                button_y["state"] = tk.DISABLED
+            if sign == 'z':
+                button_z["state"] = tk.DISABLED
+
+            if list=='i':
+                button_x["state"] = tk.NORMAL
+                button_y["state"] = tk.NORMAL
+                button_z["state"] = tk.NORMAL
+
+            # else:
+            #     button_x["state"] = tk.NORMAL
+            #     button_y["state"] = tk.NORMAL
+            #     button_z["state"] = tk.NORMAL
+
+
+
+def change(number):
+    current = []
+    for_vector = []
+    clear_list=[[1]]
+
+
+    current.append(entry.get())
+    if number == '=':
+        save(current)
+
+    if number == 'n':
+        for_vector.append(current)
+        vector_fun(for_vector)
+        numbers_active(1)
+
+
+        #save(for_vector)
+        #print("Wektor: ",for_vector)
+        clear()
+        variables('i')
+
+
+
+    else:
+        entry.delete(0, tk.END)
+        entry.insert(0, str(current[0]) + str(number))
+        #print(current)
+
+
+
+    if number=='-' or number=='+' or number==',':
+        numbers_active(1)
+        button3_1["state"] = tk.DISABLED
+        button6_1["state"] = tk.DISABLED
+        button_comma["state"] = tk.DISABLED
         button_x["state"] = tk.NORMAL
         button_y["state"] = tk.NORMAL
         button_z["state"] = tk.NORMAL
+        variables(current)
+
+
         if number==',':
-            button_x["state"] = tk.DISABLED
-            button_y["state"] = tk.DISABLED
-            button_z["state"] = tk.DISABLED
+            variables(current)
             button_comma["state"] = tk.DISABLED
-    if number!='-'and number!='+' and number!=',':
+
+    if (number=='='):
+        numbers_active(1)
+        variables(current)
+        button_x["state"] = tk.DISABLED
+        button_y["state"] = tk.DISABLED
+        button_z["state"] = tk.DISABLED
+        button_comma["state"] = tk.DISABLED
+        button3_1["state"] = tk.DISABLED
+        button6_1["state"] = tk.DISABLED
+
+    if number!='-'and number!='+' and number!=',' and number!='=' and number!='n':
+        variables(current)
         button3_1["state"] = tk.NORMAL
         button6_1["state"] = tk.NORMAL
         button_comma["state"] = tk.NORMAL
-        button_x["state"] = tk.NORMAL
-        button_y["state"] = tk.NORMAL
-        button_z["state"] = tk.NORMAL
+
 
     if number=='x' or number=='y' or number=='z':
-        button1["state"]= tk.DISABLED
-        button2["state"]= tk.DISABLED
-        button3["state"]= tk.DISABLED
-        button4["state"]= tk.DISABLED
-        button5["state"]= tk.DISABLED
-        button6["state"]= tk.DISABLED
-        button7["state"]= tk.DISABLED
-        button8["state"]= tk.DISABLED
-        button9["state"]= tk.DISABLED
-        button0["state"]= tk.DISABLED
+        numbers_active(0)
         button_comma["state"]= tk.DISABLED
         button_x["state"]= tk.DISABLED
         button_y["state"]= tk.DISABLED
         button_z["state"]= tk.DISABLED
 
-    if number=='':
-        button1["state"] = tk.NORMAL
-        button2["state"] = tk.NORMAL
-        button3["state"] = tk.NORMAL
-        button4["state"] = tk.NORMAL
-        button5["state"] = tk.NORMAL
-        button6["state"] = tk.NORMAL
-        button7["state"] = tk.NORMAL
-        button8["state"] = tk.NORMAL
-        button9["state"] = tk.NORMAL
-        button0["state"] = tk.NORMAL
-        button_comma["state"] = tk.DISABLED
-        button_x["state"] = tk.NORMAL
-        button_y["state"] = tk.NORMAL
-        button_z["state"] = tk.NORMAL
+    #if number=='':
+        # button1["state"] = tk.NORMAL
+        # button2["state"] = tk.NORMAL
+        # button3["state"] = tk.NORMAL
+        # button4["state"] = tk.NORMAL
+        # button5["state"] = tk.NORMAL
+        # button6["state"] = tk.NORMAL
+        # button7["state"] = tk.NORMAL
+        # button8["state"] = tk.NORMAL
+        # button9["state"] = tk.NORMAL
+        # button0["state"] = tk.NORMAL
+        # button_comma["state"] = tk.DISABLED
+        # button_x["state"] = tk.NORMAL
+        # button_y["state"] = tk.NORMAL
+        # button_z["state"] = tk.NORMAL
+
 
 def clear():
     entry.delete(0,tk.END)
-    button1["state"] = tk.NORMAL
-    button2["state"] = tk.NORMAL
-    button3["state"] = tk.NORMAL
-    button4["state"] = tk.NORMAL
-    button5["state"] = tk.NORMAL
-    button6["state"] = tk.NORMAL
-    button7["state"] = tk.NORMAL
-    button8["state"] = tk.NORMAL
-    button9["state"] = tk.NORMAL
-    button0["state"] = tk.NORMAL
+    numbers_active(1)
     button_comma["state"] = tk.NORMAL
     button_x["state"] = tk.NORMAL
     button_y["state"] = tk.NORMAL
@@ -223,27 +283,59 @@ entry=tk.Entry(root, width=59, borderwidth=1,)
 
 label=tk.Label(root, width=35, text="").grid(row=2, column=0, columnspan=3)
 
+def back():
+    button1["text"] = '1'
+    button2["text"] = '2'
+    button3["text"] = '3'
+    button4["text"] = '4'
+    button5["text"] = '5'
+    button6["text"] = '6'
+    button7["text"] = '7'
+    button8["text"] = '8'
+    button9["text"] = '9'
+    button0["text"] = '0'
 def zamiana():
-    button1=tk.Button(root, text="a", fg="#875c00", bg="#ffff9c", activeforeground="#875c00", activebackground="#ffffcf", padx="51", pady="20", font=myFont, command=lambda: change('a')).grid(row=5,column=0)
-    button2 =tk.Button(root, text="b", fg="#875c00", bg="#ffff9c", activeforeground="#875c00", activebackground="#ffffcf",padx="50", pady="20", font=myFont, command=lambda: change('b')).grid(row=5, column=1)
-    button3 = tk.Button(root, text="c", fg="#875c00", bg="#ffff9c", activeforeground="#875c00", activebackground="#ffffcf",padx="50", pady="20", font=myFont, command=lambda: change('c')).grid(row=5, column=2)
-    button3_1 = tk.Button(root, text="-", fg="#875c00", bg="#e6d047", activeforeground="#431800", activebackground="#f7e158",padx="52", pady="20", font=myFont, command=lambda: change('-')).grid(row=5, column=3)
-    button4 = tk.Button(root, text="d", fg="#875c00", bg="#ffff9c", activeforeground="#875c00", activebackground="#ffffcf",padx="50", pady="20", font=myFont, command=lambda: change('d')).grid(row=6, column=0)
-    button5 = tk.Button(root, text="e", fg="#875c00", bg="#ffff9c", activeforeground="#875c00", activebackground="#ffffcf",padx="50", pady="20", font=myFont, command=lambda: change('e')).grid(row=6, column=1)
-    button6 = tk.Button(root, text="f", fg="#875c00", bg="#ffff9c", activeforeground="#875c00", activebackground="#ffffcf",padx="52", pady="20", font=myFont, command=lambda: change('f')).grid(row=6, column=2)
-    button6_1 = tk.Button(root, text="+", fg="#875c00", bg="#e6d047", activeforeground="#431800", activebackground="#f7e158",padx="47", pady="20", font=myFont, command=lambda: change('+')).grid(row=6, column=3)
-    button7 = tk.Button(root, text="g", fg="#875c00", bg="#ffff9c", activeforeground="#875c00", activebackground="#ffffcf",padx="50", pady="20", font=myFont, command=lambda: change('g')).grid(row=7, column=0)
-    button8 = tk.Button(root, text="h", fg="#875c00", bg="#ffff9c", activeforeground="#875c00", activebackground="#ffffcf",padx="50", pady="20", font=myFont, command=lambda: change('h')).grid(row=7, column=1)
-    button9 = tk.Button(root, text="i", fg="#875c00", bg="#ffff9c", activeforeground="#875c00", activebackground="#ffffcf",padx="53", pady="20", font=myFont, command=lambda: change('i')).grid(row=7, column=2)
-    button9_1 = tk.Button(root, text="=", fg="#875c00", bg="#e6d047", activeforeground="#431800", activebackground="#f7e158",padx="47", pady="58", font=myFont, command=lambda: change('=')).grid(row=7, rowspan=2, column=3)
-    button0 = tk.Button(root, text="0", fg="#875c00", bg="#ffff9c", activeforeground="#875c00", activebackground="#ffffcf",padx="110", pady="20", font=myFont, command=lambda: change(0)).grid(row=8, columnspan=2)
-    button_var = tk.Button(root, text="cyfry", fg="#ffed7a", bg="#a16d00", activeforeground="#431800",activebackground="#e49f33", padx="32", pady="10", font=myFont, command=main).grid(row=3,column=2,columnspan=2)
+    button1["text"]='a'
+    button2["text"]='b'
+    button3["text"]='c'
+    button4["text"]='d'
+    button5["text"]='e'
+    button6["text"]='f'
+    button7["text"]='g'
+    button8["text"]='h'
+    button9["text"]='i'
+    button0["text"]='j'
+    button_var["command"]=back
 
-def save(current):
+    # button1=tk.Button(root, text="a", fg="#875c00", bg="#ffff9c", activeforeground="#875c00", activebackground="#ffffcf", padx="51", pady="20", font=myFont, command=lambda: change('a')).grid(row=5,column=0)
+    # button2 =tk.Button(root, text="b", fg="#875c00", bg="#ffff9c", activeforeground="#875c00", activebackground="#ffffcf",padx="50", pady="20", font=myFont, command=lambda: change('b')).grid(row=5, column=1)
+    # button3 = tk.Button(root, text="c", fg="#875c00", bg="#ffff9c", activeforeground="#875c00", activebackground="#ffffcf",padx="50", pady="20", font=myFont, command=lambda: change('c')).grid(row=5, column=2)
+    # button3_1 = tk.Button(root, text="-", fg="#875c00", bg="#e6d047", activeforeground="#431800", activebackground="#f7e158",padx="52", pady="20", font=myFont, command=lambda: change('-')).grid(row=5, column=3)
+    # button4 = tk.Button(root, text="d", fg="#875c00", bg="#ffff9c", activeforeground="#875c00", activebackground="#ffffcf",padx="50", pady="20", font=myFont, command=lambda: change('d')).grid(row=6, column=0)
+    # button5 = tk.Button(root, text="e", fg="#875c00", bg="#ffff9c", activeforeground="#875c00", activebackground="#ffffcf",padx="50", pady="20", font=myFont, command=lambda: change('e')).grid(row=6, column=1)
+    # button6 = tk.Button(root, text="f", fg="#875c00", bg="#ffff9c", activeforeground="#875c00", activebackground="#ffffcf",padx="52", pady="20", font=myFont, command=lambda: change('f')).grid(row=6, column=2)
+    # button6_1 = tk.Button(root, text="+", fg="#875c00", bg="#e6d047", activeforeground="#431800", activebackground="#f7e158",padx="47", pady="20", font=myFont, command=lambda: change('+')).grid(row=6, column=3)
+    # button7 = tk.Button(root, text="g", fg="#875c00", bg="#ffff9c", activeforeground="#875c00", activebackground="#ffffcf",padx="50", pady="20", font=myFont, command=lambda: change('g')).grid(row=7, column=0)
+    # button8 = tk.Button(root, text="h", fg="#875c00", bg="#ffff9c", activeforeground="#875c00", activebackground="#ffffcf",padx="50", pady="20", font=myFont, command=lambda: change('h')).grid(row=7, column=1)
+    # button9 = tk.Button(root, text="i", fg="#875c00", bg="#ffff9c", activeforeground="#875c00", activebackground="#ffffcf",padx="53", pady="20", font=myFont, command=lambda: change('i')).grid(row=7, column=2)
+    # button9_1 = tk.Button(root, text="=", fg="#875c00", bg="#e6d047", activeforeground="#431800", activebackground="#f7e158",padx="47", pady="58", font=myFont, command=lambda: change('=')).grid(row=7, rowspan=2, column=3)
+    # button0 = tk.Button(root, text="0", fg="#875c00", bg="#ffff9c", activeforeground="#875c00", activebackground="#ffffcf",padx="110", pady="20", font=myFont, command=lambda: change(0)).grid(row=8, columnspan=2)
+    # button_var = tk.Button(root, text="cyfry", fg="#ffed7a", bg="#a16d00", activeforeground="#431800",activebackground="#e49f33", padx="32", pady="10", font=myFont, command=main).grid(row=3,column=2,columnspan=2)
 
-    saved_list.append(current)
-    for i in saved_list:
-        print(saved_list)
+def save(list):
+
+    saved_list.append(list)
+    print("Saved list: ", saved_list)
+    # for i in list:
+    #     for element in i:
+    #        work=element[-1]
+    # vector.append(work)
+    # for i in list:
+    #     print(i)
+    # for i in vector:
+    #     print("Wyrazy wolne: ",i)
+
+
 
 
 button1=tk.Button(root, state=tk.NORMAL, text="1", fg="#875c00", bg="#ffff9c", activeforeground="#875c00", activebackground="#ffffcf", padx="50", pady="20", font=myFont, command=lambda: change(1))
@@ -261,7 +353,7 @@ button9_1=tk.Button(root, state=tk.NORMAL, text="=", fg="#875c00", bg="#e6d047",
 button0=tk.Button(root, state=tk.NORMAL, text="0", fg="#875c00", bg="#ffff9c", activeforeground="#875c00", activebackground="#ffffcf", padx="110", pady="20", font=myFont, command=lambda: change(0))
 button_comma=tk.Button(root, state=tk.DISABLED, text=",", fg="#875c00", bg="#ffff9c", activeforeground="#875c00", activebackground="#ffffcf", padx="53", pady="20", font=myFont, command=lambda: change(','))
 button_var = tk.Button(root, state=tk.DISABLED, text="zmienne", fg="#ffed7a", bg="#a16d00", activeforeground="#431800",activebackground="#e49f33", padx="14", pady="10", font=myFont, command=zamiana)
-button_next=tk.Button(root, state=tk.DISABLED, text="Następne równanie", fg="#ffed7a", bg="#a16d00", activeforeground="#431800", activebackground="#e49f33", padx="14", pady="10", font=myFont)
+button_next=tk.Button(root, state=tk.NORMAL, text="Następne równanie", fg="#ffed7a", bg="#a16d00", activeforeground="#431800", activebackground="#e49f33", padx="14", pady="10", font=myFont, command=lambda:change('n'))
 button_clear=tk.Button(root, text="Kasuj", fg="#875c00", bg="#e6d047", activeforeground="#ffed7a", activebackground="#bf1717", padx="27", pady="10", font=myFont, command=clear)
 button_x=tk.Button(root, text="x", fg="#875c00", bg="#e6d047", activeforeground="#431800", activebackground="#f7e158", padx="51", pady="10", font=myFont, command=lambda: change('x'))
 button_y=tk.Button(root, text="y", fg="#875c00", bg="#e6d047", activeforeground="#431800", activebackground="#f7e158", padx="51", pady="10", font=myFont ,command=lambda: change('y'))
@@ -289,7 +381,8 @@ button_y.grid(row=4,column=2)
 button_z.grid(row=4,column=3)
 #root.geometry("500x200")
 
-
+for i in saved_list:
+    print(saved_list)
 
 
 
@@ -297,4 +390,6 @@ button_z.grid(row=4,column=3)
 entry.grid(row=1, column=0, columnspan=4)
 
 root.mainloop()
+
+
 
